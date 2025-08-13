@@ -29,7 +29,7 @@ function SignUp(): ReactElement {
     }
 
     try {
-      await axios.post("http://localhost:3001/new_user", {
+      await axios.post("https://momentum-fwju.onrender.com/new_user", {
         name,
         email,
         password,

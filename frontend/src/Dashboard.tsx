@@ -33,7 +33,7 @@ function Dashboard(): ReactElement {
     async function fetchTodos() {
       try {
         const response: any = await axios.post(
-          "http://localhost:3001/get_todo",
+          "https://momentum-fwju.onrender.com/get_todo",
           { email: userDetails?.email ,
             password : userDetails?.password
           }
@@ -55,7 +55,7 @@ function Dashboard(): ReactElement {
   async function todochange(id: number): Promise<void> {
     try {
       const response: any = await axios.post(
-        "http://localhost:3001/complete_todo",
+        "https://momentum-fwju.onrender.com/complete_todo",
         { email: userDetails?.email, id: id }
       );
       setTodos(response.data.updatedTodos);
@@ -69,7 +69,7 @@ function Dashboard(): ReactElement {
     if (!title) return;
     setIsSubmitting(true);
     try {
-      await axios.post("http://localhost:3001/todo", {
+      await axios.post("https://momentum-fwju.onrender.com/todo", {
         email: userDetails?.email,
         title: title,
         description: description,
@@ -80,7 +80,7 @@ function Dashboard(): ReactElement {
       setDescription("");
 
       const response: any = await axios.post(
-        "http://localhost:3001/get_todo",
+        "https://momentum-fwju.onrender.com/get_todo",
         { email: userDetails?.email }
       );
       setTodos(response.data);

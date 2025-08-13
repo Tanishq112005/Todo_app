@@ -34,7 +34,7 @@ function LoginPage(): ReactElement {
     }
 
     try {
-      const response: any = await axios.post("http://localhost:3001/login", {
+      const response: any = await axios.post("https://momentum-fwju.onrender.com/login", {
         email,
         password,
       });
