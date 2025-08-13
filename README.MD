@@ -64,7 +64,7 @@ cd Todo_app
 **2. Set up the Backend (Server):**
 ```bash
 # Navigate to the server directory
-cd server
+cd backend
 
 # Install backend dependencies
 npm install
@@ -77,15 +77,18 @@ Now, open the `.env` file and add the following environment variables. You'll ne
 ```env
 # .env file for the server
 
+#Your Port Number 
+Port_number=3001        // any port number according to you  
+
 # Your MongoDB connection URI
-MONGO_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/yourDatabaseName?retryWrites=true&w=majority
+Mongo_db=mongodb+srv://<user>:<password>@cluster.mongodb.net/yourDatabaseName?retryWrites=true&w=majority
 
 
 
 **3. Set up the Frontend (Client):**
 ```bash
 # Navigate back to the root and into the client directory
-cd ../client
+cd ../frontend
 
 # Install frontend dependencies
 npm install
@@ -96,10 +99,18 @@ npm install
 You can run both the client and server concurrently from the root directory with a single command.
 
 ```bash
-# From the root directory (Todo_app/)
-npm run dev
+# From the root directory 
+
+# to run the backend 
+cd backend 
+cd src
+ts-node index.ts 
+
+# to run frontend 
+cd frontend 
+npm run dev 
 ```
-*(This assumes you have a `dev` script in your root `package.json` that uses a tool like `concurrently`)*
+
 
 -   The React frontend will be available at **`http://localhost:3000`**
 -   The Express backend will be running on **`http://localhost:5000`** (or your specified port)
