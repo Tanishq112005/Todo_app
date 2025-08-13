@@ -1,3 +1,4 @@
 backend/src/keys.ts
 backend/dist
 backend/node_modules/
+frontend/dist
