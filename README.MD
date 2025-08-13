@@ -11,16 +11,24 @@
 
 ## ✨ Sneak Peek
 
+
 *Landing Page of the Momentum Website*
+
 ![Landing Page](./images/landing_page.png) 
 
+
 *Sign Up Page of the Momentum Website* 
+
 ![Sign Up Page](./images/sign_up_page.png) 
 
+
 *Login Page of the Momentum Website* 
+
 ![Login Page](./images/login_page.png)
 
+
 *Your personal dashboard, where productivity meets elegant design.*
+
 ![Dashboard  Screenshot](./images/dashboard_pgae.png)
 
 
@@ -122,7 +130,7 @@ npm run dev
 ```
 
 
--   The React frontend will be available at **`http://localhost:3000`**
+-   The React frontend will be available at **`http://localhost:5173`**
 -   The Express backend will be running on **`http://localhost:5000`** (or your specified port)
 
 ## 📬 Contact
