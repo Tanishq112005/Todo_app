@@ -1,8 +1,10 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import { Mongo_db_connection } from './keys';
+
 dotenv.config();
-const mongodb_connection : any = Mongo_db_connection ; 
+
+
+const mongodb_connection : any  = process.env.Mongo_db; 
 async function database_making() {
   try {
     await mongoose.connect(mongodb_connection) ; 

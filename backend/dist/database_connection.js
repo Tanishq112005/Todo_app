@@ -15,9 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TotalDB = exports.User = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const dotenv_1 = __importDefault(require("dotenv"));
-const keys_1 = require("./keys");
 dotenv_1.default.config();
-const mongodb_connection = keys_1.Mongo_db_connection;
+const mongodb_connection = process.env.Mongo_db;
 function database_making() {
     return __awaiter(this, void 0, void 0, function* () {
         try {

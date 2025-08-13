@@ -3,11 +3,11 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt'; 
 import { TotalDB } from './database_connection';
-import { Port_number } from './keys';
+
 
 dotenv.config();
 const app = express();
-const port = Port_number || 3001; 
+const port = process.env.Port_number || 3001 ;  
 
 const saltRounds = 10; 
 
