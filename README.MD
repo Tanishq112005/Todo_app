@@ -10,8 +10,16 @@
 **Momentum** is a modern, full-stack personal dashboard and To-Do application built with the MERN stack and TypeScript. It provides a secure, robust, and beautiful environment to help you stay organized and focused. With a complete user authentication system, your tasks are saved to your personal account, accessible anytime.
 
 ## ✨ Sneak Peek
+![Landing Page](./images/landing_page.png) 
+*Landing Page of the Momentum Website
 
-![Dashboard Screenshot](dashboard-screenshot.png)
+![Sign Up Page](./images/sign_up_page.png) 
+*Sign Up Page of the Momentum Website 
+
+![Login Page](./images/login_page.png)
+*Login Page of the Momentum Website 
+
+![Dashboard  Screenshot](./images/dashboard_pgae.png)
 *Your personal dashboard, where productivity meets elegant design.*
 
 ## 🚀 Features
