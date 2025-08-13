@@ -1,0 +1,3 @@
+./backend/src/keys.ts
+./backend/dist/keys.js
+./backend/node_modules
