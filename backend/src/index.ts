@@ -1,20 +1,20 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import bcrypt from 'bcrypt'; // <-- Import bcrypt
+import bcrypt from 'bcrypt'; 
 import { TotalDB } from './database_connection';
 import { Port_number } from './keys';
 
 dotenv.config();
 const app = express();
-const port = Port_number || 3001; // Fallback to 3001 if not set
+const port = Port_number || 3001; 
 
-const saltRounds = 10; // The cost factor for hashing
+const saltRounds = 10; 
 
 app.use(express.json());
 app.use(cors());
 
-// --- 1. Secure User Creation (Sign Up) ---
+
 app.post('/new_user', async (req, res): Promise<void> => {
   try {
     const { name, password, email } = req.body;
@@ -23,13 +23,13 @@ app.post('/new_user', async (req, res): Promise<void> => {
       return;
     }
 
-    // Hash the password before saving it to the database
+
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
     const newUser = new TotalDB({
-      name,
-      email,
-      password: hashedPassword, // Store the hashed password
+      name : name ,
+      email : email,
+      password: hashedPassword, 
       array: [],
     });
 
@@ -37,7 +37,7 @@ app.post('/new_user', async (req, res): Promise<void> => {
 
     res.status(201).json({ msg: 'User is created successfully' });
   } catch (err : any) {
-    // Handle potential duplicate email error from the database
+  
     if (err.code === 11000) {
       res.status(409).json({ msg: 'Email already exists.' });
     } else {
@@ -46,7 +46,7 @@ app.post('/new_user', async (req, res): Promise<void> => {
   }
 });
 
-// --- 2. New Secure User Login Route ---
+
 app.post('/login', async (req, res): Promise<void> => {
   try {
     const { email, password } = req.body;
@@ -55,30 +55,29 @@ app.post('/login', async (req, res): Promise<void> => {
       return;
     }
 
-    // Find the user by their unique email
-    const user = await TotalDB.findOne({ email });
+   
+    const user = await TotalDB.findOne({ email : email });
     if (!user) {
       // User not found
       res.status(401).json({ msg: 'Invalid credentials' });
       return;
     }
 
-    // Compare the submitted password with the stored hash
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      // Password does not match
+   
       res.status(401).json({ msg: 'Invalid credentials' });
       return;
     }
 
-    // Login successful
+
     res.status(200).json({
       msg: 'Login successful',
       user: {
         name: user.name,
         email: user.email,
-        // DO NOT send the password back, even the hash
-      },
+        password : user.password
+      }
     });
   } catch (err) {
     console.error('Login error:', err);
@@ -87,21 +86,23 @@ app.post('/login', async (req, res): Promise<void> => {
 });
 
 
-// --- 3. Updated Todo Routes (Using password check for auth) ---
 
-// This is a helper function to avoid repeating authentication logic
-async function authenticateUser(email : any, password : any) {
-  const user = await TotalDB.findOne({ email });
+async function authenticateUser(email : any) {
+  try{
+  const user = await TotalDB.findOne({ email : email });
   if (!user) return null;
-  
-  const isMatch = await bcrypt.compare(password, user.password);
-  return isMatch ? user : null;
+  console.log("error") ; 
+  return user ; 
+  }
+  catch(err){
+    console.log(err) ; 
+  }
 }
 
 app.post('/get_todo', async (req, res): Promise<any> => {
-  const { email, password } = req.body;
+  const { email } = req.body;
   try {
-    const user = await authenticateUser(email, password);
+    const user = await authenticateUser(email);
     if (!user) {
       return res.status(401).json({ message: 'Authentication failed' });
     }
@@ -116,7 +117,7 @@ app.post('/todo', async (req, res): Promise<any> => {
   try {
     const { email, password, title, description } = req.body;
 
-    const user = await authenticateUser(email, password);
+    const user = await authenticateUser(email);
     if (!user) {
       return res.status(401).json({ message: 'Authentication failed' });
     }
@@ -142,9 +143,9 @@ app.post('/todo', async (req, res): Promise<any> => {
 });
 
 app.post('/complete_todo', async (req, res) => {
-  const { email, password, id } = req.body;
+  const { email, id } = req.body;
   try {
-    const user = await authenticateUser(email, password);
+    const user = await authenticateUser(email);
     if (!user) {
       return res.status(401).json({ message: 'Authentication failed' });
     }
