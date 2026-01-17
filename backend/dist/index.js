@@ -153,6 +153,11 @@ app.post('/complete_todo', (req, res) => __awaiter(void 0, void 0, void 0, funct
         res.status(500).json({ message: 'Internal server error' });
     }
 }));
+app.get("/health", function (req, res) {
+    res.status(200).json({
+        msg: "Server is running properly"
+    });
+});
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });

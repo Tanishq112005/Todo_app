@@ -169,6 +169,13 @@ app.post('/complete_todo', async (req, res) => {
 });
 
 
+
+app.get("/health" , function(req , res) {
+  res.status(200).json({
+    msg : "Server is running properly" 
+  })
+})
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
